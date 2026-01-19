@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scan History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+    <h3>🗂 Scan History</h3>
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Target URL</th>
+                <th>Total Vulnerabilities</th>
+                <th>Last Scan Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in history %}
+            <tr>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] or 'Never' }}</td>
+                <td>
+                    <a href="/target/{{ row[0] }}" class="btn btn-sm btn-outline-primary">View</a>
+                    <a href="/export/csv/{{ row[0] }}" class="btn btn-sm btn-outline-success">CSV</a>
+                    <a href="/export/pdf/{{ row[0] }}" class="btn btn-sm btn-outline-danger">PDF</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/" class="btn btn-secondary mt-2">⬅️ Back to Dashboard</a>
+</div>
+</body>
+</html>
